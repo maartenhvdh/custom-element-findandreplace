@@ -27,8 +27,8 @@
 				CustomElement.setHeight(400);
 				CustomElement.init((element, _context) => {
 					config = element.config || {};
-					$("#environment")(config.envId);
-					$("#mapi").val(config.mapiId);					
+					$('[name="environment"]').val(config.envId);
+					$('[name="mapi"]').val(config.mapiId);				
 				});
 			});
 		</script>
