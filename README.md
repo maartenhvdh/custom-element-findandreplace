@@ -1,5 +1,3 @@
-![alt text](https://github.com/JKannekens/kontent-custom-element-formsite/blob/master/FormsiteFormSelector.gif "Search and Replace")
-
 ## Setup
 1. Deploy the code to a secure public host
 2. Follow the instructions in the Kentico Kontent documentation to add the element to a content model.
