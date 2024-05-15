@@ -77,7 +77,7 @@ function loadWF() {
 }
 
 function loadTypes(xc) {
-	var url = 'https://manage.kontent.ai/v2/projects/'+project+'/types';
+	var url = 'https://manage.kontent.ai/v2/projects/'+environment+'/types';
 	$.ajax({
 		url: url,
 		dataType: 'text',		
@@ -123,7 +123,7 @@ function loadTypes(xc) {
 }
 
 function loadItems(type,xc) {
-	var url = 'https://manage.kontent.ai/v2/projects/'+project+'/types/'+type_ids[(type-1)]+'/variants';
+	var url = 'https://manage.kontent.ai/v2/projects/'+environment+'/types/'+type_ids[(type-1)]+'/variants';
 	$.ajax({
 		url: url,
 		dataType: 'text',		
@@ -221,7 +221,7 @@ function updateItems() {
 						  ]
 						}
 				
-			var url = 'https://manage.kontent.ai/v2/projects/'+project+'/items/'+items_changed[toUpdate][0]+'/variants/'+items_changed[toUpdate][1];
+			var url = 'https://manage.kontent.ai/v2/projects/'+environment+'/items/'+items_changed[toUpdate][0]+'/variants/'+items_changed[toUpdate][1];
 			$.ajax({
 				url: url,
 				type: "PUT",
@@ -254,7 +254,7 @@ function updateItems() {
 }
 
 function createNewVersion() {				
-	var url = 'https://manage.kontent.ai/v2/projects/'+project+'/items/'+items_changed[toUpdate][0]+'/variants/'+items_changed[toUpdate][1]+'/new-version';
+	var url = 'https://manage.kontent.ai/v2/projects/'+environment+'/items/'+items_changed[toUpdate][0]+'/variants/'+items_changed[toUpdate][1]+'/new-version';
 	$.ajax({
 		url: url,
 		type: "PUT",
@@ -278,7 +278,7 @@ function createNewVersion() {
 }
 
 function publishVersion() {				
-	var url = 'https://manage.kontent.ai/v2/projects/'+project+'/items/'+items_changed[toUpdate][0]+'/variants/'+items_changed[toUpdate][1]+'/publish';
+	var url = 'https://manage.kontent.ai/v2/projects/'+environment+'/items/'+items_changed[toUpdate][0]+'/variants/'+items_changed[toUpdate][1]+'/publish';
 	$.ajax({
 		url: url,
 		type: "PUT",
@@ -300,7 +300,7 @@ function publishVersion() {
 }
 
 function returnLink(id, lang) {
-	return "<a href='https://app.kontent.ai/"+project+"/content-inventory/"+lang+"/content/"+id+"' target='_blank'>"+id+"</a>";
+	return "<a href='https://app.kontent.ai/"+environment+"/content-inventory/"+lang+"/content/"+id+"' target='_blank'>"+id+"</a>";
 }
 
 function showMsg(msg) {
