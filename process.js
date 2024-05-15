@@ -167,7 +167,7 @@ function loadItems(type, xc) {
                 if (retryAfter) {
                     setTimeout(function() {
                         loadItems(type, xc);
-                    }, parseInt(retryAfter) * 1000); // Retry-After is in seconds
+                    }, parseInt(retryAfter) * 100); // Retry-After is in seconds
                 }
             } else {
                 $("#msg").html("Error: " + textStatus + ". " + errorThrown);

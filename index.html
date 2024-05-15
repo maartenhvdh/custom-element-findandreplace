@@ -11,8 +11,8 @@
 	<body>	
 		<div class="overlay">Getting data</div>	
 		<div class="top-bar">
-			<!-- Environment ID:  --><input size="40" type="text" name="environment" id="environment" class="input" />
-			<!-- Management API key:  --><input size="50" type="text" name="mapi" id="mapi" class="input" /><br />
+			<!-- Environment ID:  --><input size="40" hidden type="text" name="environment" id="environment" class="input" />
+			<!-- Management API key:  --><input size="50" hidden type="text" name="mapi" id="mapi" class="input" /><br />
 			Replace what: <input size="40" type="text" name="source" id="source" class="input" /><br />
 			Replace with: <input size="40" type="text" name="target" id="target" class="input" /><br />
 			Replace also in published items: <input type="checkbox" id="publishreplace" name="publishreplace" class="chbx" value="Publish replace"><br />
@@ -24,7 +24,7 @@
 		<script>
 			$(document).ready(function () {	
 				
-				CustomElement.setHeight(400);
+				CustomElement.setHeight(300);
 				CustomElement.init((element, _context) => {
 					config = element.config || {};
 					$('[name="environment"]').val(config.envId);
