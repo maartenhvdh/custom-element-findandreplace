@@ -18,7 +18,7 @@ $(document).ready(function()
 	$("#submit").click(function() {
 		items = [];
 		items_changed = [];
-		project = $("#project").val();
+		project = $("#environment").val();
 		mapi = $("#mapi").val();
 		source = $("#source").val();
 		target = $("#target").val();
@@ -45,7 +45,7 @@ $(document).ready(function()
 });
 
 function loadWF() {
-	var url = 'https://manage.kontent.ai/v2/projects/'+project+'/workflows';
+	var url = 'https://manage.kontent.ai/v2/projects/'+environment+'/workflows';
 	$.ajax({
 		url: url,
 		dataType: 'text',		
