@@ -122,54 +122,59 @@ function loadTypes(xc) {
 	});	
 }
 
-function loadItems(type,xc) {
-	var url = 'https://manage.kontent.ai/v2/projects/'+environment+'/types/'+type_ids[(type-1)]+'/variants';
-	$.ajax({
-		url: url,
-		dataType: 'text',		
-		beforeSend: function(xhr, settings) { 
-			if (xc) {
-				xhr.setRequestHeader('X-Continuation',xc);
-			}
-			if (mapi) {
-				xhr.setRequestHeader('Authorization','Bearer '+mapi);
-			}
-		},
-		success: function (data, textStatus, request) {
-			data = JSON.parse(data);
-			if (data.variants.length > 0) {
-				processItems(data.variants);
-				var xc = request.getResponseHeader('X-Continuation');
-				if (xc) {
-					loadItems(type,xc);
-				}
-				else {
-					processed--;
-					if (processed==0) {
-						$('.overlay').hide();
-						replaceText();
-					}
-					else {
-						loadItems(processed,"")
-					}
-				}
-			}
-			else {
-				processed--;
-				if (processed==0) {
-					$('.overlay').hide();
-					replaceText();
-				}
-				else {
-					loadItems(processed,"")
-				}
-			}
-		},
-		error:function(jqXHR, textStatus, errorThrown){
-			 $("#msg").html("No data found. Please make sure you have correct project id and MAPI token.");
-			 $('.overlay').hide();
-		} 
-	});	
+function loadItems(type, xc) {
+    var url = 'https://manage.kontent.ai/v2/projects/' + environment + '/types/' + type_ids[(type - 1)] + '/variants';
+    $.ajax({
+        url: url,
+        dataType: 'text',
+        beforeSend: function(xhr, settings) {
+            if (xc) {
+                xhr.setRequestHeader('X-Continuation', xc);
+            }
+            if (mapi) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + mapi);
+            }
+        },
+        success: function(data, textStatus, request) {
+            data = JSON.parse(data);
+            if (data.variants.length > 0) {
+                processItems(data.variants);
+                var xc = request.getResponseHeader('X-Continuation');
+                if (xc) {
+                    loadItems(type, xc);
+                } else {
+                    processed--;
+                    if (processed == 0) {
+                        $('.overlay').hide();
+                        replaceText();
+                    } else {
+                        loadItems(processed, "")
+                    }
+                }
+            } else {
+                processed--;
+                if (processed == 0) {
+                    $('.overlay').hide();
+                    replaceText();
+                } else {
+                    loadItems(processed, "")
+                }
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            if (jqXHR.status === 429) {
+                var retryAfter = jqXHR.getResponseHeader('Retry-After');
+                if (retryAfter) {
+                    setTimeout(function() {
+                        loadItems(type, xc);
+                    }, parseInt(retryAfter) * 1000); // Retry-After is in seconds
+                }
+            } else {
+                $("#msg").html("Error: " + textStatus + ". " + errorThrown);
+                $('.overlay').hide();
+            }
+        }
+    });
 }
 
 function processItems(data) {
