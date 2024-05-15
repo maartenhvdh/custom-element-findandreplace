@@ -162,15 +162,14 @@ function loadItems(type, xc) {
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            if (jqXHR.status === 429) {
+            if (jqXHR.status === 429 && retryCount < 5) {
                 var retryAfter = jqXHR.getResponseHeader('Retry-After');
-                if (retryAfter) {
-                    setTimeout(function() {
-                        loadItems(type, xc);
-                    }, parseInt(retryAfter) * 100); // Retry-After is in seconds
-                }
+                var delay = retryAfter ? parseInt(retryAfter) * 1000 : 5000; // Default delay of 5 seconds if Retry-After is not provided
+                setTimeout(function() {
+                    loadItems(type, xc, retryCount + 1);
+                }, delay);
             } else {
-                $("#msg").html("Error: " + textStatus + ". " + errorThrown);
+                $("#msg").html("No data found or maximum retry limit reached. Please make sure you have correct project id and MAPI token.");
                 $('.overlay').hide();
             }
         }
