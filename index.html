@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		
+		<title>Kontent.ai "Replace text"</title>				
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="https://app.kontent.ai/js-api/custom-element/v1/custom-element.min.js"></script>
+		<script type="text/javascript" src="process.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		
+	</head>
+	<body>
+	
+		<div class="overlay">Getting data</div>
+		
+		<div class="app_name">Replace text</div>
+	
+		<div class="top-bar">
+			Environment ID: <input size="40" type="text" name="environment" id="environment" class="input" />
+			Management API key: <input size="50" type="text" name="mapi" id="mapi" class="input" /><br />
+			Replace what: <input size="40" type="text" name="source" id="source" class="input" />
+			Replace with: <input size="40" type="text" name="target" id="target" class="input" /><br />
+			Replace also in published items: <input type="checkbox" id="publishreplace" name="publishreplace" class="chbx" value="Publish replace"><br />
+			Publish published items after replacement: <input type="checkbox" id="publish" name="publish" class="chbx" value="Publish">
+			<input id="submit" type="submit" value="Submit" class="submit" />
+		</div>
+		<div id="output"></div>
+		<div id="msg"></div>
+		<script>
+			$(document).ready(function () {	
+				CustomElement.init((element, _context) => {
+					config = element.config || {};
+					$('environment').prop("value", config.envId);
+					$('mapiId').prop("value", config.mapiId);					
+				});
+			});
+		</script>
+	</body>
+	
+</html>
+
