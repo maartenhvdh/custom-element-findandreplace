@@ -122,7 +122,7 @@ function loadTypes(xc) {
 	});	
 }
 
-function loadItems(type, xc) {
+function loadItems(type, xc, retryCount = 0) {
     var url = 'https://manage.kontent.ai/v2/projects/' + environment + '/types/' + type_ids[(type - 1)] + '/variants';
     $.ajax({
         url: url,
