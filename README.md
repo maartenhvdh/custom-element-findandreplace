@@ -8,7 +8,7 @@
 ```
 {
     "envId": "<YOUR ENVIRONMENT ID>",
-    "apiKey": "<YOUR API KEY>"
+    "mapiId": "<YOUR MANAGEMENT API KEY>"
 }
 ```
 

@@ -10,12 +10,8 @@
 		<link rel="stylesheet" type="text/css" href="style.css">
 		
 	</head>
-	<body>
-	
-		<div class="overlay">Getting data</div>
-		
-		<div class="app_name">Replace text</div>
-	
+	<body>	
+		<div class="overlay">Getting data</div>	
 		<div class="top-bar">
 			Environment ID: <input size="40" type="text" name="environment" id="environment" class="input" />
 			Management API key: <input size="50" type="text" name="mapi" id="mapi" class="input" /><br />
@@ -31,12 +27,12 @@
 			$(document).ready(function () {	
 				CustomElement.init((element, _context) => {
 					config = element.config || {};
-					$('environment').prop("value", config.envId);
-					$('mapiId').prop("value", config.mapiId);					
+					$('[name="environment"]').val(config.envId);
+					$('[name="mapiId"]').val(config.mapiId);					
 				});
 			});
 		</script>
 	</body>
 	
-</html>
+</html>$
 
