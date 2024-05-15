@@ -18,7 +18,7 @@ $(document).ready(function()
 	$("#submit").click(function() {
 		items = [];
 		items_changed = [];
-		project = $('[name="environment"]').val();
+		environment = $("#environment").val();
 		mapi = $("#mapi").val();
 		source = $("#source").val();
 		target = $("#target").val();

@@ -23,10 +23,12 @@
 		<div id="msg"></div>
 		<script>
 			$(document).ready(function () {	
+				
+				CustomElement.setHeight(500);
 				CustomElement.init((element, _context) => {
 					config = element.config || {};
-					$('[name="environment"]').val(config.envId);
-					$('[name="mapi"]').val(config.mapiId);					
+					$("#environment")(config.envId);
+					$("#mapi").val(config.mapiId);					
 				});
 			});
 		</script>
